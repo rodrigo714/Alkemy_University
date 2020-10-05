@@ -1,0 +1,48 @@
+﻿@model DataPager<TCareer>
+@{
+    ViewData["Title"] = "Careers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Careers</h1>
+
+<p>
+    <a data-toggle="modal" data-target="#modal1" class="btn btn-info text-white">Create Career</a>
+</p>
+<div class="modal fade" data-backdrop="static" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add Career</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-area="Career" asp-controller="Careers" asp-action="GetPost">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label asp-for="Input.Name" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Name" placeholder="Career Name" class="form-control" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Description" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Description" placeholder="Career Name" class="form-control" />
+                            <span asp-validation-for="Input.Description" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Status" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Status"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" onclick="" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
