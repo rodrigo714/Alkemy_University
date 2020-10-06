@@ -83,3 +83,9 @@ body {
 h1 {
     text-shadow: 1px 1px;
 }
+
+.hidenn {
+    visibility: hidden;
+    height: 0px;
+    width: auto;
+}

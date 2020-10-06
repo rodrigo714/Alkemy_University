@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
@@ -16,6 +17,9 @@
 
   <ItemGroup>
     <Folder Include="Areas\Career\Data\" />
+    <Folder Include="Areas\Course\Controllers\" />
+    <Folder Include="Areas\Course\Data\" />
+    <Folder Include="Areas\Course\Views\" />
     <Folder Include="Areas\Principal\Data\" />
     <Folder Include="Areas\Principal\Models\" />
   </ItemGroup>

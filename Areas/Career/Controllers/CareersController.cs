@@ -10,6 +10,7 @@ using Alkemy_University.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Alkemy_University.Areas.Career.Controllers
 {
@@ -41,6 +42,25 @@ namespace Alkemy_University.Areas.Career.Controllers
             else
             {
                 return RedirectToAction(nameof(HomeController.Index), "Index");
+            }
+        }
+
+        public IActionResult GetCareer()
+        {
+            return View("Index");
+        }
+
+        [HttpPost]
+        public string GetCareer(DataPager<TCareer> model)
+        {
+            if(model.Input.Name != null && model.Input.Description != null)
+            {
+                var data = _lcareer.CareerRegistration(model.Input);
+                return JsonConvert.SerializeObject(data);
+            }
+            else
+            {
+                return "Fill all the required fields";
             }
         }
     }

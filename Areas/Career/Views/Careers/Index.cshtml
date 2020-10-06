@@ -18,7 +18,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" asp-area="Career" asp-controller="Careers" asp-action="GetPost">
+            <form method="post" asp-area="Career" asp-controller="Careers" asp-action="GetCareer" class="formCareer" >
                 <div class="modal-body">
                     <div class="form-group">
                         <label asp-for="Input.Name" class="col-md-2 col-form-label"></label>
@@ -28,21 +28,27 @@
                         </div>
                         <label asp-for="Input.Description" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input asp-for="Input.Description" placeholder="Career Name" class="form-control" />
+                            <input asp-for="Input.Description" placeholder="Career Description" class="form-control" />
                             <span asp-validation-for="Input.Description" class="text-danger"></span>
                         </div>
                         <label asp-for="Input.Status" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input asp-for="Input.Status"/>
+                            <input asp-for="Input.Status" />
                         </div>
+                        <span id="message" class="text-danger"></span>
+                        <input type="hidden" required />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" onclick="" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-primary" id="addButton" onclick="career.CareerRegister()">Add</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
 
