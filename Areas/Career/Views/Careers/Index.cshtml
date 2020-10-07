@@ -84,17 +84,17 @@
                     <div class="form-group">
                         <label asp-for="Input.Name" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input asp-for="Input.Name" placeholder="Career Name" class="form-control" />
+                            <input asp-for="Input.Name" placeholder="Career Name" class="form-control" id="inputName"/>
                             <span asp-validation-for="Input.Name" class="text-danger"></span>
                         </div>
                         <label asp-for="Input.Description" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input asp-for="Input.Description" placeholder="Career Description" class="form-control" />
+                            <input asp-for="Input.Description" placeholder="Career Description" class="form-control" id="inputDesc" />
                             <span asp-validation-for="Input.Description" class="text-danger"></span>
                         </div>
                         <label asp-for="Input.Status" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input asp-for="Input.Status" />
+                            <input asp-for="Input.Status" id="inputStatus"/>
                         </div>
                         <span id="message" class="text-danger"></span>
                         <input type="hidden" required />

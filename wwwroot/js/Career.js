@@ -23,6 +23,9 @@ class Career {
     }
 
     CareerEdit(data) {
+        document.getElementById("inputName").value = data.Name;
+        document.getElementById("inputDesc").value = data.Description;
+        document.getElementById("inputStatus").value = data.Status;
         console.log(data);
     }
 }
