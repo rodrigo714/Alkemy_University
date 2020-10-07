@@ -40,16 +40,6 @@ namespace Alkemy_University.Library
             int page_totalpages;
             page_totalpages = page_regcounter / page_count;
 
-            //if ((page_regcounter / page_count) <= 0)
-            //{
-            //    page_totalpages = page_regcounter;
-            //}
-            //else
-            //{
-            //    page_totalpages = page_regcounter / page_count;
-            //}
-
-
             if (page_actual != 1)
             {
                 int page_url = 1;

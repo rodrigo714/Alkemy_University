@@ -33,8 +33,19 @@ namespace Alkemy_University.Areas.Career.Controllers
         {
             if (_signInManager.IsSignedIn(User))
             {
-                var url = Request.Scheme + "://" + Request.Host.Value;
-                var objects = new LPager<TCareer>().Pager(_lcareer.getTCareer(Search), id, Records, "Career", "Careers", "Index", url);
+                object[] objects = new object[3];
+                var data = _lcareer.getTCareer(Search);
+                if(data.Count > 0)
+                {
+                    var url = Request.Scheme + "://" + Request.Host.Value;
+                    objects = new LPager<TCareer>().Pager(_lcareer.getTCareer(Search), id, Records, "Career", "Careers", "Index", url);
+                }
+                else
+                {
+                    objects[0] = "No Data";
+                    objects[1] = "No Data";
+                    objects[2] = new List<TCareer>();
+                }
 
                 models = new DataPager<TCareer>
                 {

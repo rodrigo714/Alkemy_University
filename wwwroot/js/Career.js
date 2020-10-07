@@ -21,4 +21,8 @@ class Career {
             }
          );
     }
+
+    CareerEdit(data) {
+        console.log(data);
+    }
 }
