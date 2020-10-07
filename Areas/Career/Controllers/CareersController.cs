@@ -29,12 +29,18 @@ namespace Alkemy_University.Areas.Career.Controllers
             _lcareer = new LCareer(context);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id, string Search, int Records)
         {
             if (_signInManager.IsSignedIn(User))
             {
+                var url = Request.Scheme + "://" + Request.Host.Value;
+                var objects = new LPager<TCareer>().Pager(_lcareer.getTCareer(Search), id, Records, "Career", "Careers", "Index", url);
+
                 models = new DataPager<TCareer>
                 {
+                    List = (List<TCareer>)objects[2],
+                    Page_info = (string)objects[0],
+                    Page_nav = (string)objects[1],
                     Input = new TCareer()
                 };
                 return View(models);

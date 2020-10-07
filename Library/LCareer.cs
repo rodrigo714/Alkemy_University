@@ -36,5 +36,19 @@ namespace Alkemy_University.Library
             }
             return identityError;
         }
+
+        internal List<TCareer> getTCareer(string search)
+        {
+            List<TCareer> ListCareers;
+            if(search == null)
+            {
+                ListCareers = _context._TCareer.ToList();
+            }
+            else
+            {
+                ListCareers = _context._TCareer.Where(c=>c.Name.Contains(search)).ToList();
+            }
+            return ListCareers;
+        }
     }
 }

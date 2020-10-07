@@ -9,6 +9,45 @@
 <p>
     <a data-toggle="modal" data-target="#modal1" class="btn btn-info text-white">Create Career</a>
 </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Input.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Input.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Input.Status)
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.List)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    Results: @Html.Raw(Model.Page_info)
+    <br />
+    @Html.Raw(Model.Page_nav)
+</div>
 <div class="modal fade" data-backdrop="static" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
