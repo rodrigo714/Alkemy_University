@@ -1,9 +1,5 @@
-﻿using Alkemy_University.Areas.Career.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Alkemy_University.Models
 {
