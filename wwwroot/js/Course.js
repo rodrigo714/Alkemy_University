@@ -17,6 +17,16 @@ class Course {
             processData: false,
             type: "post",
             success: (result) => {
+                try {
+                    var item = JSON.parse(result);
+                    if (item.Code == "Done") {
+                        window.location.href = "Index";
+                    } else {
+                        document.getElementById("message").innerHTML = item.Description;
+                    }
+                } catch{
+                    document.getElementById("message").innerHTML = result;
+                }
                 console.log(result)
             }
         });

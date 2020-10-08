@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Alkemy_University.Areas.Course.Controllers
 {
@@ -28,12 +29,29 @@ namespace Alkemy_University.Areas.Course.Controllers
             _lcourse = new LCourse(context, environment);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id, string search, int records)
         {
             if (_signInManager.IsSignedIn(User))
             {
+                object[] objects = new object[3];
+                var data = _lcourse.GetListCourses(search);
+                if(data.Count > 0)
+                {
+                    var url = Request.Scheme + "://" + Request.Host.Value;
+                    objects = new LPager<TCourse>().Pager(data, id, records, "Course", "Courses", "Index", url);
+                }
+                else
+                {
+                    objects[0] = "No Data";
+                    objects[1] = "No Data";
+                    objects[2] = new List<TCourse>();
+                }
+
                 models = new DataPager<TCourse>
                 {
+                    List = (List<TCourse>)objects[2],
+                    Page_info = (string)objects[0],
+                    Page_nav = (string)objects[1],
                     Careers = _lcareer.GetListCareer(),
                     Input = new TCourse()
                 };
@@ -56,11 +74,14 @@ namespace Alkemy_University.Areas.Course.Controllers
                 }
                 else
                 {
-                    var data = _lcourse.CourseRegisterAsync(model);
-                    return JsonConvert.SerializeObject(data.Result);
+                    var data = _lcourse.CourseRegister(model);
+                    return JsonConvert.SerializeObject(data.Code);
                 }
             }
-            return "FUCK YOU";
+            else
+            {
+                return "Insert all the fields";
+            }
         }
     }
 }

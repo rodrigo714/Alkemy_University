@@ -27,7 +27,7 @@
 <br />
 <table class="table">
     <thead>
-        @*<tr>
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Input.Name)
             </th>
@@ -38,12 +38,15 @@
                 @Html.DisplayNameFor(model => model.Input.Status)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Input.Hours)
+            </th>
+            <th>
                 Options
             </th>
-        </tr>*@
+        </tr>
     </thead>
     <tbody>
-        @*@foreach (var item in Model.List)
+        @foreach (var item in Model.List)
         {
             <tr>
                 <td>
@@ -56,20 +59,23 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Hours)
+                </td>
+                @*<td>
                     @{
                         var data = JsonConvert.SerializeObject(item);
-                        <a data-toggle="modal" onclick="career.CareerEdit(@data)" data-target="#modal1" class="btn btn-outline-info">Edit</a>
-                        <a data-toggle="modal" onclick="career.CareerGet(@data)" data-target="#modal2" class="btn btn-outline-danger">Delete</a>
+                        <a data-toggle="modal" onclick="course.CourseEdit(@data)" data-target="#modal1" class="btn btn-outline-info">Edit</a>
+                        <a data-toggle="modal" onclick="course.CourseGet(@data)" data-target="#modal2" class="btn btn-outline-danger">Delete</a>
                     }
-                </td>
+                </td>*@
             </tr>
-        }*@
+        }
     </tbody>
 </table>
 <div>
-    @*Results: @Html.Raw(Model.Page_info)
+    Results: @Html.Raw(Model.Page_info)
     <br />
-    @Html.Raw(Model.Page_nav)*@
+    @Html.Raw(Model.Page_nav)
 </div>
 
 <partial name="_RegisterModal" />
