@@ -1,10 +1,10 @@
 ﻿using Alkemy_University.Areas.Career.Models;
 using Alkemy_University.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Alkemy_University.Library
 {
@@ -22,7 +22,14 @@ namespace Alkemy_University.Library
             IdentityError identityError;
             try
             {
-                _context.Add(career);
+                if (career.CareerID.Equals(0))
+                {
+                     _context.Add(career);
+                }
+                else
+                {
+                    _context.Update(career);
+                }
                 _context.SaveChanges();
                 identityError = new IdentityError { Code = "Done" };
             }
@@ -49,6 +56,45 @@ namespace Alkemy_University.Library
                 ListCareers = _context._TCareer.Where(c=>c.Name.Contains(search)).ToList();
             }
             return ListCareers;
+        }
+
+        internal IdentityError CareerDelete(int _CareerID)
+        {
+            IdentityError identityError;
+            try
+            {
+                var career = new TCareer
+                {
+                    CareerID = _CareerID
+                };
+                _context._TCareer.Remove(career);
+                _context.SaveChanges();
+                identityError = new IdentityError { Code = "Done" };
+            }
+            catch(Exception e)
+            {
+                identityError = new IdentityError
+                {
+                    Code = "Error",
+                    Description = e.Message
+                };
+            }
+            return identityError;
+        }
+
+        public List<SelectListItem> GetListCareer()
+        {
+            var _selectList = new List<SelectListItem>();
+            var careers = _context._TCareer.Where(c => c.Status.Equals(true)).ToList();
+            foreach(var item in careers)
+            {
+                _selectList.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.CareerID.ToString()
+                });
+            }
+            return _selectList;
         }
     }
 }

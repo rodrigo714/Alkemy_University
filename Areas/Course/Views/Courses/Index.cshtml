@@ -1,14 +1,14 @@
-﻿@model DataPager<TCareer>
+﻿@model DataPager<TCourse>
 @{
-    ViewData["Title"] = "Careers";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Careers</h1>
+<h1>Index</h1>
 <p>
-    <a data-toggle="modal" data-target="#modal1" class="btn btn-info text-white">Create Career</a>
+    <a data-toggle="modal" data-target="#modal1" class="btn btn-info text-white">Create Course</a>
 </p>
-<form asp-area="Career" asp-controller="Careers" asp-action="Index" method="get">
+<form asp-area="Course" asp-controller="Courses" asp-action="Index" method="get">
     <div class="row">
         <div class="col-auto">
             <input id="search" name="search" placeholder="Search" class="form-control" />
@@ -27,7 +27,7 @@
 <br />
 <table class="table">
     <thead>
-        <tr>
+        @*<tr>
             <th>
                 @Html.DisplayNameFor(model => model.Input.Name)
             </th>
@@ -40,10 +40,10 @@
             <th>
                 Options
             </th>
-        </tr>
+        </tr>*@
     </thead>
     <tbody>
-        @foreach (var item in Model.List)
+        @*@foreach (var item in Model.List)
         {
             <tr>
                 <td>
@@ -63,13 +63,13 @@
                     }
                 </td>
             </tr>
-         }
+        }*@
     </tbody>
 </table>
 <div>
-    Results: @Html.Raw(Model.Page_info)
+    @*Results: @Html.Raw(Model.Page_info)
     <br />
-    @Html.Raw(Model.Page_nav)
+    @Html.Raw(Model.Page_nav)*@
 </div>
 
 <partial name="_RegisterModal" />
@@ -78,4 +78,3 @@
 @section Scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
-

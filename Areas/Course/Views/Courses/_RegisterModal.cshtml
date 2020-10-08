@@ -1,0 +1,52 @@
+﻿@model DataPager<TCourse>
+
+<div class="modal fade" data-backdrop="static" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add Course</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="course.Reset()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-area="Course" asp-controller="Courses" asp-action="GetCourses" class="formCourse">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label asp-for="Input.Name" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Name" placeholder="Course Name" class="form-control" id="inputName" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Description" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Description" placeholder="Course Description" class="form-control" id="inputDesc" />
+                            <span asp-validation-for="Input.Description" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Hours" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Hours" placeholder="Course Hours" class="form-control" id="inputHours" />
+                            <span asp-validation-for="Input.Hours" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Input.Status" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Input.Status" id="inputStatus" />
+                        </div>
+                        <label asp-for="Input.Career" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(x => Model.Input.CareerID, new SelectList(Model.Careers, "Value", "Text"), "Select a Career",
+                                htmlAttributes: new { @class = "form-control", id = "inputCareer" })
+                            <span asp-validation-for="Input.CareerID" class="text-danger"></span>
+                        </div>
+                        <span id="message" class="text-danger"></span>
+                        <input type="hidden" required />
+                        <input asp-for="Input.CourseID" type="hidden" id="inputID" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="course.Reset()">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="addButton" onclick="course.CourseRegister()">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ namespace Alkemy_University.Areas.Course.Models
         public string Description { get; set; }
         public byte Hours { get; set; }
         public bool Status { get; set; }
+        [Required(ErrorMessage = "Select one career")]
         public int CareerID { get; set; }
         public TCareer Career { get; set; }
     }

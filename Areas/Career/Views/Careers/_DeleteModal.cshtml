@@ -1,0 +1,22 @@
+﻿
+<div class="modal fade" data-backdrop="static" id="modal2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Career</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="career.Reset()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to delete?</h5>
+                <h4 id="titleCareer"></h4>
+            </div>
+            <div class="modal-footer">
+                <span id="messageDelete" class="text-danger"></span>
+                <button type="button" class="btn btn-outline-info" data-dismiss="modal" onclick="career.Reset()">Close</button>
+                <button type="button" class="btn btn-outline-danger" onclick="career.CareerDelete()">Delete</button> 
+            </div>
+        </div>
+    </div>
+</div>

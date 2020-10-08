@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Alkemy_University.Areas.Career.Models;
 using Alkemy_University.Controllers;
 using Alkemy_University.Data;
@@ -79,6 +76,13 @@ namespace Alkemy_University.Areas.Career.Controllers
             {
                 return "Fill all the required fields";
             }
+        }
+
+        [HttpPost]
+        public string DeleteCareer(int CareerID)
+        {
+            var identityError = _lcareer.CareerDelete(CareerID);
+            return JsonConvert.SerializeObject(identityError);
         }
     }
 }

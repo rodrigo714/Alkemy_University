@@ -4,3 +4,5 @@
 // Write your JavaScript code.
 
 var career = new Career();
+
+var course = new Course();
