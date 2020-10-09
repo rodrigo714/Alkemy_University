@@ -1,5 +1,7 @@
 ﻿using Alkemy_University.Areas.Career.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Alkemy_University.Areas.Course.Models
 {
@@ -15,6 +17,8 @@ namespace Alkemy_University.Areas.Course.Models
         public bool Status { get; set; }
         [Required(ErrorMessage = "Select one career")]
         public int CareerID { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public TCareer Career { get; set; }
     }
 }

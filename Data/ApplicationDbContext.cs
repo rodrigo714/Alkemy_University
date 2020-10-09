@@ -16,7 +16,7 @@ namespace Alkemy_University.Data
         }
 
         public DbSet<TCareer> _TCareer { get; set; }
-        public DbSet<TCourse> TCourse { get; set; }
+        public DbSet<TCourse> _TCourse { get; set; }
 
     }
 }

@@ -75,7 +75,7 @@ namespace Alkemy_University.Areas.Course.Controllers
                 else
                 {
                     var data = _lcourse.CourseRegister(model);
-                    return JsonConvert.SerializeObject(data.Code);
+                    return JsonConvert.SerializeObject(data);
                 }
             }
             else

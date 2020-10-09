@@ -26,16 +26,33 @@ namespace Alkemy_University.Library
             IdentityError identityError;
             try
             {
-                var course = new TCourse
+                if (model.Input.CourseID.Equals(0))
                 {
-                    Name = model.Input.Name,
-                    Description = model.Input.Description,
-                    Hours = model.Input.Hours,
-                    Status = model.Input.Status,
-                    CareerID = model.Input.CareerID
-                };
-                context.TCourse.Add(course);
-                context.SaveChanges();
+                    var course = new TCourse
+                    {
+                        Name = model.Input.Name,
+                        Description = model.Input.Description,
+                        Hours = model.Input.Hours,
+                        Status = model.Input.Status,
+                        CareerID = model.Input.CareerID
+                    };
+                    context._TCourse.Add(course);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    var course = new TCourse
+                    {
+                        CourseID = model.Input.CourseID,
+                        Name = model.Input.Name,
+                        Description = model.Input.Description,
+                        Hours = model.Input.Hours,
+                        Status = model.Input.Status,
+                        CareerID = model.Input.CareerID
+                    };
+                    context._TCourse.Update(course);
+                    context.SaveChanges();
+                }
                 identityError = new IdentityError { Code = "Done" };
             }
             catch(Exception e)
@@ -54,11 +71,11 @@ namespace Alkemy_University.Library
             List<TCourse> listCourses;
             if (search == null)
             {
-                listCourses = context.TCourse.ToList();
+                listCourses = context._TCourse.ToList();
             }
             else
             {
-                listCourses = context.TCourse.Where(c => c.Name.Contains(search)).ToList();
+                listCourses = context._TCourse.Where(c => c.Name.Contains(search)).ToList();
             }
             return listCourses;
         }
