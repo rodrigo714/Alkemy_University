@@ -12,13 +12,11 @@ namespace Alkemy_University.Library
 {
     public class LCourse
     {
-        private ApplicationDbContext context;
-        private IWebHostEnvironment environment;
+        private ApplicationDbContext _context;
 
-        public LCourse(ApplicationDbContext context, IWebHostEnvironment environment)
+        public LCourse(ApplicationDbContext context)
         {
-            this.context = context;
-            this.environment = environment;
+            _context = context;
         }
 
         public IdentityError CourseRegister(DataPager<TCourse> model)
@@ -36,8 +34,8 @@ namespace Alkemy_University.Library
                         Status = model.Input.Status,
                         CareerID = model.Input.CareerID
                     };
-                    context._TCourse.Add(course);
-                    context.SaveChanges();
+                    _context._TCourse.Add(course);
+                    _context.SaveChanges();
                 }
                 else
                 {
@@ -50,9 +48,33 @@ namespace Alkemy_University.Library
                         Status = model.Input.Status,
                         CareerID = model.Input.CareerID
                     };
-                    context._TCourse.Update(course);
-                    context.SaveChanges();
+                    _context._TCourse.Update(course);
+                    _context.SaveChanges();
                 }
+                identityError = new IdentityError { Code = "Done" };
+            }
+            catch(Exception e)
+            {
+                identityError = new IdentityError
+                {
+                    Code = "Error",
+                    Description = e.Message
+                };
+            }
+            return identityError;
+        }
+
+        internal IdentityError CourseDelete(int _CourseID)
+        {
+            IdentityError identityError;
+            try
+            {
+                var course = new TCourse
+                {
+                    CourseID = _CourseID
+                };
+                _context._TCourse.Remove(course);
+                _context.SaveChanges();
                 identityError = new IdentityError { Code = "Done" };
             }
             catch(Exception e)
@@ -71,11 +93,11 @@ namespace Alkemy_University.Library
             List<TCourse> listCourses;
             if (search == null)
             {
-                listCourses = context._TCourse.ToList();
+                listCourses = _context._TCourse.ToList();
             }
             else
             {
-                listCourses = context._TCourse.Where(c => c.Name.Contains(search)).ToList();
+                listCourses = _context._TCourse.Where(c => c.Name.Contains(search)).ToList();
             }
             return listCourses;
         }

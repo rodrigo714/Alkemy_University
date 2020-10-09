@@ -14,7 +14,7 @@ class Course {
         data.append('Input.CourseID', $("#inputID").val());
 
         $.ajax({
-            url: "/Courses/GetCourses",
+            url: "/Courses/CourseRegister",
             data: data,
             cache: false,
             contentType: false,
@@ -59,6 +59,27 @@ class Course {
 
         console.log(course);
         console.log(career);
+    }
+
+    CourseGet(data) {
+        document.getElementById("titleCourse").innerHTML = data.Name;
+        this.CourseID = data.CourseID;
+    }
+
+    CourseDelete() {
+        $.post(
+            "/Courses/CourseDelete",
+            { CourseID: this.CourseID },
+            (response) => {
+                console.log(response);
+                var item = JSON.parse(response);
+                if (item.Code == "Done") {
+                    window.location.href = "/Courses/Index";
+                } else {
+                    document.getElementById("messageDelete").innerHTML = item.Description;
+                }
+            }
+        );
     }
 
     Reset() {

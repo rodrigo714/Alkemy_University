@@ -68,7 +68,7 @@
                     @{
                         var course = JsonConvert.SerializeObject(item);
                         <a data-toggle="modal" onclick="course.CourseEdit(@course, @career)" data-target="#modal1" class="btn btn-outline-info">Edit</a>
-                        <a data-toggle="modal" onclick="course.CourseGet()" data-target="#modal2" class="btn btn-outline-danger">Delete</a>
+                        <a data-toggle="modal" onclick="course.CourseGet(@course)" data-target="#modal2" class="btn btn-outline-danger">Delete</a>
                     }
                 </td>
             </tr>

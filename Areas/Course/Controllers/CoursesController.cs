@@ -3,7 +3,6 @@ using Alkemy_University.Data;
 using Alkemy_University.Library;
 using Alkemy_University.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,7 +11,7 @@ using System.Collections.Generic;
 namespace Alkemy_University.Areas.Course.Controllers
 {
     [Area("Course")]
-    [Authorize]
+    [Authorize("Admin")]
     public class CoursesController : Controller
     {
         private LCourse _lcourse;
@@ -22,11 +21,11 @@ namespace Alkemy_University.Areas.Course.Controllers
         private static IdentityError IdentityError;
         private ApplicationDbContext _context;
 
-        public CoursesController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager, IWebHostEnvironment environment)
+        public CoursesController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager)
         {
             _signInManager = signInManager;
             _lcareer = new LCareer(context);
-            _lcourse = new LCourse(context, environment);
+            _lcourse = new LCourse(context);
         }
 
         public IActionResult Index(int id, string search, int records)
@@ -64,7 +63,7 @@ namespace Alkemy_University.Areas.Course.Controllers
         }
 
         [HttpPost]
-        public string GetCourses(DataPager<TCourse> model)
+        public string CourseRegister(DataPager<TCourse> model)
         {
             if (model.Input.Name != null && model.Input.Description != null && model.Input.CareerID > 0)
             {
@@ -82,6 +81,13 @@ namespace Alkemy_University.Areas.Course.Controllers
             {
                 return "Insert all the fields";
             }
+        }
+
+        [HttpPost]
+        public string CourseDelete(int CourseID)
+        {
+            var identityError = _lcourse.CourseDelete(CourseID);
+            return JsonConvert.SerializeObject(identityError);
         }
     }
 }
