@@ -29,12 +29,18 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Career" asp-controller="Careers" asp-action="Index">Careers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Course" asp-controller="Courses" asp-action="Index">Courses</a>
-                            </li>
+                            var user = await UserManager.GetUserAsync(User);
+                            var role = await UserManager.IsInRoleAsync(user, "Admin");
+                            if (role)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Career" asp-controller="Careers" asp-action="Index">Careers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Course" asp-controller="Courses" asp-action="Index">Courses</a>
+                                </li>
+                            }
+
                         }
                         else
                         {

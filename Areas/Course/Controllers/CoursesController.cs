@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Alkemy_University.Areas.Course.Controllers
 {
     [Area("Course")]
-    [Authorize("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CoursesController : Controller
     {
         private LCourse _lcourse;

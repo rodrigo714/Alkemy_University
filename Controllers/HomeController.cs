@@ -6,21 +6,56 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Alkemy_University.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using Alkemy_University.Library;
+using Alkemy_University.Areas.Course.Models;
+using Alkemy_University.Data;
 
 namespace Alkemy_University.Controllers
 {
     public class HomeController : Controller
     {
+        private LCourse _lcourse;
+        public static DataPager<TCourse> model;
+        //private IServiceProvider _serviceprovider;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider, ApplicationDbContext context)
         {
             _logger = logger;
+            _lcourse = new LCourse(context);
+
+            //_serviceprovider = serviceProvider;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page, string search)
         {
-            return View();
+            Object[] objects = new Object[3];
+            var data = _lcourse.GetListCourses(search);
+            if(data.Count > 0)
+            {
+                var url = Request.Scheme + "://" + Request.Host.Value;
+                objects = new LPager<TCourse>().Pager(data, page, 5, "", "Home", "Index", url);
+            }
+            else
+            {
+                objects[0] = "No data";
+                objects[1] = "No data";
+                objects[2] = new List<TCourse>();
+            }
+
+            model = new DataPager<TCourse>
+            {
+                List = (List<TCourse>)objects[2],
+                Page_info = (string)objects[0],
+                Page_nav = (string)objects[1],
+                Input = new TCourse()
+            };
+
+            //await CreateRolesAsync(_serviceprovider);
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -32,6 +67,23 @@ namespace Alkemy_University.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private async Task CreateRolesAsync(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            String[] rolesName = { "Admin", "Student" };
+            foreach (var item in rolesName)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(item);
+                if (!roleExist)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(item));
+                }
+            }
+            var user = await userManager.FindByIdAsync("56958b68-baff-4375-9279-cf839033a3a6");
+            await userManager.AddToRoleAsync(user, "Admin");
         }
     }
 }

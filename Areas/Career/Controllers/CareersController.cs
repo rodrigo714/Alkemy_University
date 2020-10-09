@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace Alkemy_University.Areas.Career.Controllers
 {
     [Area("Career")]
-    [Authorize("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CareersController : Controller
     {
         private TCareer _career;
