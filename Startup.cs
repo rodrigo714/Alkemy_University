@@ -75,6 +75,10 @@ namespace Alkemy_University
                     name: "Course",
                     areaName: "Course",
                     pattern: "{controller=Courses}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Inscriptions",
+                    areaName: "Inscriptions",
+                    pattern: "{controller=Inscriptions}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

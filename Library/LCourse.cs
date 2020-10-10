@@ -1,4 +1,5 @@
 ﻿using Alkemy_University.Areas.Course.Models;
+using Alkemy_University.Areas.Inscriptions.Models;
 using Alkemy_University.Data;
 using Alkemy_University.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -100,6 +101,74 @@ namespace Alkemy_University.Library
                 listCourses = _context._TCourse.Where(c => c.Name.Contains(search)).ToList();
             }
             return listCourses;
+        }
+
+        public DataCourse GetCourseCareer(int id)
+        {
+            DataCourse dataCourse = null;
+            var query = _context._TCareer.Join(_context._TCourse,
+                c => c.CareerID,
+                d => d.CourseID,
+                (c,d)=> new
+                {
+                    c.CareerID,
+                    d.Name,
+                    d.CourseID,
+                    d.Description,
+                    d.Hours,
+                    d.Status,
+                }).Where(e => e.CourseID.Equals(id)).ToList();
+
+            if (!query.Count().Equals(0))
+            {
+                var data = query.Last();
+                dataCourse = new DataCourse
+                {
+                    CourseID = data.CourseID,
+                    Name = data.Name,
+                    Description = data.Description,
+                    Hours = data.Hours,
+                    Status = data.Status,
+                    CareerID = data.CareerID
+                };
+            }
+            return dataCourse;
+        }
+
+        public IdentityError Inscription(int CourseID, string UserID)
+        {
+            IdentityError identityError;
+            try
+            {
+                var courseInscription = _context._TInscription.Where(c => c.CourseID.Equals(CourseID) 
+                    && c.StudentID.Equals(UserID)).ToList();
+                if (courseInscription.Count.Equals(0))
+                {
+                    var course = GetCourseCareer(CourseID);
+                    var inscription = new Inscription
+                    {
+                        StudentID = UserID,
+                        Date = DateTime.Now,
+                        CourseID = CourseID,
+                    };
+                    _context.Add(inscription);
+                    _context.SaveChanges();
+                    identityError = new IdentityError { Code = "Done" };
+                }
+                else 
+                {
+                    identityError = new IdentityError { Description = "Student already suscribed" };
+                }
+            }
+            catch(Exception e)
+            {
+                    identityError = new IdentityError
+                    {
+                        Code = "Error",
+                        Description = e.Message
+                    };
+            }
+            return identityError;
         }
     }
 }

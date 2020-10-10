@@ -1,4 +1,7 @@
 ﻿using Alkemy_University.Areas.Career.Models;
+using Alkemy_University.Areas.Inscriptions.Models;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -20,5 +23,6 @@ namespace Alkemy_University.Areas.Course.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public TCareer Career { get; set; }
+        public ICollection<Inscription> Inscription { get; set; }
     }
 }

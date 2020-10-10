@@ -17,16 +17,22 @@ namespace Alkemy_University.Controllers
     public class HomeController : Controller
     {
         private LCourse _lcourse;
+        private IdentityError _identityError;
+        private DataCourse _dataCourse;
         public static DataPager<TCourse> model;
+        public SignInManager<IdentityUser> _signInManager;
+        public UserManager<IdentityUser> _userManager;
         //private IServiceProvider _serviceprovider;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider, ApplicationDbContext context,
+            SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _lcourse = new LCourse(context);
-
+            _signInManager = signInManager;
+            _userManager = userManager;
             //_serviceprovider = serviceProvider;
         }
 
@@ -53,8 +59,19 @@ namespace Alkemy_University.Controllers
                 Page_nav = (string)objects[1],
                 Input = new TCourse()
             };
+            if(_identityError != null)
+            {
+                model.Page_info = _identityError.Description;
+                _identityError = null;
+            }
 
             //await CreateRolesAsync(_serviceprovider);
+            return View(model);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var model = _lcourse.GetCourseCareer(id);
             return View(model);
         }
 
@@ -84,6 +101,38 @@ namespace Alkemy_University.Controllers
             }
             var user = await userManager.FindByIdAsync("56958b68-baff-4375-9279-cf839033a3a6");
             await userManager.AddToRoleAsync(user, "Admin");
+        }
+
+        public async Task<IActionResult> Inscription(int CourseID, int view)
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+                var userID = await _userManager.GetUserIdAsync(user);
+                var data = _lcourse.Inscription(CourseID, userID);
+                if (data.Code == "Done")
+                {
+                    return Redirect("/Inscriptions/Index?area=Inscriptions");
+                }
+                else
+                {
+                    _identityError = data;
+                    if (view == 1)
+                    {
+                        return Redirect("/Home/Index");
+                    }
+                    else
+                    {
+                        _dataCourse = _lcourse.GetCourseCareer(CourseID);
+                        _dataCourse.ErrorMessage = data.Description;
+                        return View("/Home/Details", _dataCourse);
+                    }
+                }
+            }
+            else
+            {
+                return Redirect("/Identity/Account/Login");
+            }
         }
     }
 }

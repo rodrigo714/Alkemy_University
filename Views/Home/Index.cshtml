@@ -50,7 +50,11 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a asp-route-id="@item.CourseID" asp-action="Details" class="btn btn-primary">Suscribe</a>
+                                        <form method="post" asp-action="inscription">
+                                            <input type="submit" class="btn btn-success" value="Inscription" />
+                                            <input type="hidden" value="@item.CourseID" name="courseId" />
+                                            <input type="hidden" name="view" value="1" />
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>

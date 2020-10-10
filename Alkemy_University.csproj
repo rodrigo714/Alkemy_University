@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="Areas\Career\Data\" />
     <Folder Include="Areas\Course\Data\" />
+    <Folder Include="Areas\Inscriptions\Data\" />
     <Folder Include="Areas\Principal\Data\" />
     <Folder Include="Areas\Principal\Models\" />
   </ItemGroup>
