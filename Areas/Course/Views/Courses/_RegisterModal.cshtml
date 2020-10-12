@@ -40,7 +40,7 @@
                         <div class="col-md-10">
                             @Html.DropDownListFor(x => Model.Input.ProfessorID, new SelectList(Model.Professors, "Value", "Text"), "Select a Professor",
                                 htmlAttributes: new { @class = "form-control", id = "inputProfessor" })
-                            <span asp-validation-for="Input.CareerID" class="text-danger"></span>
+                            <span asp-validation-for="Input.ProfessorID" class="text-danger"></span>
                         </div>
                         <span id="message" class="text-danger"></span>
                         <input type="hidden" required />
