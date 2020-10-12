@@ -14,5 +14,6 @@ namespace Alkemy_University.Models
         public string ErrorMessage { get; set; }
 
         public IEnumerable<SelectListItem> Careers { get; set; }
+        public IEnumerable<SelectListItem> Professors { get; set; }
     }
 }

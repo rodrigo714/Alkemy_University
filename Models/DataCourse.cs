@@ -13,6 +13,7 @@ namespace Alkemy_University.Models
         public byte Hours { get; set; }
         public bool Status { get; set; }
         public int CareerID { get; set; }
+        public string ProfessorID { get; set; }
         public string ErrorMessage { get; set; }
     }
 }

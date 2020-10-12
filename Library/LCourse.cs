@@ -3,6 +3,7 @@ using Alkemy_University.Areas.Inscriptions.Models;
 using Alkemy_University.Data;
 using Alkemy_University.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,8 @@ namespace Alkemy_University.Library
                         Description = model.Input.Description,
                         Hours = model.Input.Hours,
                         Status = model.Input.Status,
-                        CareerID = model.Input.CareerID
+                        CareerID = model.Input.CareerID,
+                        ProfessorID = model.Input.ProfessorID
                     };
                     _context._TCourse.Add(course);
                     _context.SaveChanges();
@@ -45,7 +47,8 @@ namespace Alkemy_University.Library
                         Description = model.Input.Description,
                         Hours = model.Input.Hours,
                         Status = model.Input.Status,
-                        CareerID = model.Input.CareerID
+                        CareerID = model.Input.CareerID,
+                        ProfessorID = model.Input.ProfessorID
                     };
                     _context._TCourse.Update(course);
                     _context.SaveChanges();
@@ -61,6 +64,12 @@ namespace Alkemy_University.Library
                 };
             }
             return identityError;
+        }
+
+        internal IEnumerable<SelectListItem> GetListProfessor()
+        {
+            List<AspNetUsers> listProfessors;
+
         }
 
         internal IdentityError CourseDelete(int _CourseID)
@@ -115,6 +124,7 @@ namespace Alkemy_University.Library
                     d.Description,
                     d.Hours,
                     d.Status,
+                    d.ProfessorID
                 }).Where(e => e.CourseID.Equals(id)).ToList();
 
             if (!query.Count().Equals(0))
@@ -127,7 +137,8 @@ namespace Alkemy_University.Library
                     Description = data.Description,
                     Hours = data.Hours,
                     Status = data.Status,
-                    CareerID = data.CareerID
+                    CareerID = data.CareerID,
+                    ProfessorID = data.ProfessorID
                 };
             }
             return dataCourse;
@@ -188,6 +199,7 @@ namespace Alkemy_University.Library
                                 e.Description,
                                 e.Hours,
                                 e.Status,
+                                e.ProfessorID
                             }).Where(t => t.CourseID.Equals(c.CourseID)).ToList();
 
                         if (!query.Count.Equals(0))
@@ -200,7 +212,9 @@ namespace Alkemy_University.Library
                                 Description = data.Name,
                                 Hours = data.Hours,
                                 Status = data.Status,
-                                CareerID = data.CareerID
+                                CareerID = data.CareerID,
+                                ProfessorID = data.ProfessorID
+
                             });
                         }
                     });
@@ -219,6 +233,7 @@ namespace Alkemy_University.Library
                                 e.Description,
                                 e.Hours,
                                 e.Status,
+                                e.ProfessorID
                             }).Where(t => t.CourseID.Equals(c.CourseID) && t.Name.Contains(search)).ToList();
 
                         if (!query.Count.Equals(0))
@@ -231,7 +246,8 @@ namespace Alkemy_University.Library
                                 Description = data.Name,
                                 Hours = data.Hours,
                                 Status = data.Status,
-                                CareerID = data.CareerID
+                                CareerID = data.CareerID,
+                                ProfessorID = data.ProfessorID
                             });
                         }
                     });

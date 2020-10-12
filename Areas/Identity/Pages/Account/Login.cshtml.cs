@@ -82,7 +82,7 @@ namespace Alkemy_University.Areas.Identity.Pages.Account
                 {
                     //_logger.LogInformation("User logged in.");
                     //return LocalRedirect(returnUrl);
-                    return Redirect("/Principal/Index");
+                    return Redirect("/Home/Index");
                 }
                 if (result.RequiresTwoFactor)
                 {

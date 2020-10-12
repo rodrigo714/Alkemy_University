@@ -23,6 +23,7 @@ namespace Alkemy_University.Areas.Course.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public TCareer Career { get; set; }
+        public string ProfessorID { get; set; }
         public ICollection<Inscription> Inscription { get; set; }
     }
 }

@@ -125,7 +125,7 @@ namespace Alkemy_University.Controllers
                     {
                         _dataCourse = _lcourse.GetCourseCareer(CourseID);
                         _dataCourse.ErrorMessage = data.Description;
-                        return View("/Home/Details", _dataCourse);
+                        return RedirectToPage("/Home/Details", _dataCourse);
                     }
                 }
             }
