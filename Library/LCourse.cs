@@ -66,11 +66,11 @@ namespace Alkemy_University.Library
             return identityError;
         }
 
-        internal IEnumerable<SelectListItem> GetListProfessor()
-        {
-            List<AspNetUsers> listProfessors;
+        //internal IEnumerable<SelectListItem> GetListProfessor()
+        //{
+        //    List<AspNetUsers> listProfessors;
 
-        }
+        //}
 
         internal IdentityError CourseDelete(int _CourseID)
         {
