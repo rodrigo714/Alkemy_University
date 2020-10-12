@@ -172,7 +172,6 @@ namespace Alkemy_University.Library
         public List<DataCourse> Inscriptions(string userID, string search)
         {
             List<DataCourse> courses = new List<DataCourse>();
-
             var inscriptions = _context._TInscription.Where(c => c.StudentID.Equals(userID)).ToList();
             if (!inscriptions.Count.Equals(0))
             {
@@ -185,6 +184,7 @@ namespace Alkemy_University.Library
                             (d,e) => new {
                                 d.CareerID,
                                 e.CourseID,
+                                e.Name,
                                 e.Description,
                                 e.Hours,
                                 e.Status,
@@ -195,22 +195,53 @@ namespace Alkemy_University.Library
                             var data = query.Last();
                             courses.Add(new DataCourse
                             {
-
+                                CourseID = data.CourseID,
+                                Name = data.Name,
+                                Description = data.Name,
+                                Hours = data.Hours,
+                                Status = data.Status,
+                                CareerID = data.CareerID
                             });
                         }
                     });
+                    return courses;
                 }
                 else
                 {
+                    inscriptions.ForEach(c => {
+                        var query = _context._TCareer.Join(_context._TCourse,
+                            d => d.CareerID,
+                            e => e.CareerID,
+                            (d, e) => new {
+                                d.CareerID,
+                                e.CourseID,
+                                e.Name,
+                                e.Description,
+                                e.Hours,
+                                e.Status,
+                            }).Where(t => t.CourseID.Equals(c.CourseID) && t.Name.Contains(search)).ToList();
 
+                        if (!query.Count.Equals(0))
+                        {
+                            var data = query.Last();
+                            courses.Add(new DataCourse
+                            {
+                                CourseID = data.CourseID,
+                                Name = data.Name,
+                                Description = data.Name,
+                                Hours = data.Hours,
+                                Status = data.Status,
+                                CareerID = data.CareerID
+                            });
+                        }
+                    });
+                    return courses;
                 }
-
             }
             else
             {
-
+                return null;
             }
-
         }
     }
 }

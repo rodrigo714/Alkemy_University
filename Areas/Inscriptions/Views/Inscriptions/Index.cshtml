@@ -1,8 +1,78 @@
-﻿
+﻿@model DataPager<DataCourse>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Inscriptions</h1>
+<br />
+<div class="form-group">
+    <form action="" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" id="search" name="search" placeholder="Search" class="form-control" />
+            </div>
+            <div class="col-md-1">
+                <div class="row">
+                    <input type="submit" value="Search" class="btn btn-success" />
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="row">
+                    <a asp-area="Inscriptions" asp-controller="Inscriptions" asp-action="Export" class="btn btn-info">Export</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    @foreach (var item in Model.List)
+    {
+        <div class="col-sm-6 col-md-6">
+            <div class="card">
+                <a asp-route-id="@item.CourseID" asp-action="Details">Details</a>
+                <div class="card-body">
+                    <table class="tableCourses">
+                        <tbody>
+                            <tr>
+                                <th>Course</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>@Html.DisplayFor(modelItem => item.Name)</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                @if (item.Status)
+                                {
+                                    <p class="text-success">Available</p>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">Unavailable</p>
+                                }
+                            </tr>
+                            <tr>
+                                <th>Hours</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>@Html.DisplayFor(motelItem => item.Hours)</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
+    }
+</div>
+<div align="center">
+    Results: @Html.Raw(Model.Page_info)
+    <br />
+    @Html.Raw(Model.Page_nav)
+</div>

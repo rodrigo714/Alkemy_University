@@ -1,0 +1,71 @@
+﻿@model DataCourse
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Details</h1>
+    <div class="row">
+        <div class="col-sm">
+            <div class="card" style="width: 21rem">
+                <div class="card-body">
+                    <table class="tableCourse">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <h6>Course</h6>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5> @Model.Name</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Description</h6>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5> @Model.Description</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Hours</h6>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5> @Model.Hours</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Status</h6>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5> @Model.Status</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <h6>Career</h6>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5> @Model.CareerID</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
