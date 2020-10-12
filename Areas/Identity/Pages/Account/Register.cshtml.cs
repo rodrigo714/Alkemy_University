@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Alkemy_University.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,14 +20,14 @@ namespace Alkemy_University.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityExtends> _signInManager;
+        private readonly UserManager<IdentityExtends> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityExtends> userManager,
+            SignInManager<IdentityExtends> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -51,6 +52,24 @@ namespace Alkemy_University.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [StringLength(25)]
+            [RegularExpression("^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$", ErrorMessage = "Only Alphabets allowed.")]
+            [Display(Name = "First Name")]
+            public string First_Name { get; set; }
+
+            [Required]
+            [StringLength(50)]
+            [RegularExpression("^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$", ErrorMessage = "Only Alphabets allowed.")]
+            [Display(Name = "Last Name")]
+            public string Last_Name { get; set; }
+
+            [Required]
+            [StringLength(8, MinimumLength = 1)]
+            [RegularExpression("^[0-9]*$", ErrorMessage = "Only Numbers allowed.")]
+            [Display(Name = "DNI")]
+            public string DNI { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -70,11 +89,18 @@ namespace Alkemy_University.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("/Principal/Index");
+            returnUrl = returnUrl ?? Url.Content("/Home/Index");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityExtends { 
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    First_Name = Input.First_Name,
+                    Last_Name = Input.Last_Name,
+                    DNI = Input.DNI
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -18,13 +18,13 @@ namespace Alkemy_University.Areas.Inscriptions.Controllers
         private LCourse _lCourse;
         private DataPager<DataCourse> _dataPager;
         private IdentityError _identityError;
-        private SignInManager<IdentityUser> _signinManager;
-        private UserManager<IdentityUser> _userManager;
+        private SignInManager<IdentityExtends> _signinManager;
+        private UserManager<IdentityExtends> _userManager;
         private ApplicationDbContext _context;
         private DataPager<DataCourse> model;
 
-        public InscriptionsController(SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager, ApplicationDbContext context)
+        public InscriptionsController(SignInManager<IdentityExtends> signInManager,
+            UserManager<IdentityExtends> userManager, ApplicationDbContext context)
         {
             _signinManager = signInManager;
             _userManager = userManager;

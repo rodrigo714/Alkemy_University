@@ -17,10 +17,10 @@ namespace Alkemy_University.Areas.Career.Controllers
     {
         private TCareer _career;
         private LCareer _lcareer;
-        private SignInManager<IdentityUser> _signInManager;
+        private SignInManager<IdentityExtends> _signInManager;
         private static DataPager<TCareer> models;
 
-        public CareersController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager)
+        public CareersController(ApplicationDbContext context, SignInManager<IdentityExtends> signInManager)
         {
             _signInManager = signInManager;
             _lcareer = new LCareer(context);

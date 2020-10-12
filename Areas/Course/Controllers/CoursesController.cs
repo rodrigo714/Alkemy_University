@@ -16,12 +16,12 @@ namespace Alkemy_University.Areas.Course.Controllers
     {
         private LCourse _lcourse;
         private LCareer _lcareer;
-        private SignInManager<IdentityUser> _signInManager;
+        private SignInManager<IdentityExtends> _signInManager;
         private static DataPager<TCourse> models;
         private static IdentityError IdentityError;
         private ApplicationDbContext _context;
 
-        public CoursesController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager)
+        public CoursesController(ApplicationDbContext context, SignInManager<IdentityExtends> signInManager)
         {
             _signInManager = signInManager;
             _lcareer = new LCareer(context);

@@ -6,6 +6,7 @@ using Alkemy_University.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Alkemy_University.Models;
 
 namespace Alkemy_University
 {
@@ -28,7 +29,7 @@ namespace Alkemy_University
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<IdentityExtends>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -79,6 +80,10 @@ namespace Alkemy_University
                     name: "Inscriptions",
                     areaName: "Inscriptions",
                     pattern: "{controller=Inscriptions}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Professor",
+                    areaName: "Professor",
+                    pattern: "{controller=Professors}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

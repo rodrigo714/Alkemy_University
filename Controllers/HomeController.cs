@@ -20,14 +20,14 @@ namespace Alkemy_University.Controllers
         private IdentityError _identityError;
         private DataCourse _dataCourse;
         public static DataPager<TCourse> model;
-        public SignInManager<IdentityUser> _signInManager;
-        public UserManager<IdentityUser> _userManager;
+        public SignInManager<IdentityExtends> _signInManager;
+        public UserManager<IdentityExtends> _userManager;
         //private IServiceProvider _serviceprovider;
 
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider, ApplicationDbContext context,
-            SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+            SignInManager<IdentityExtends> signInManager, UserManager<IdentityExtends> userManager)
         {
             _logger = logger;
             _lcourse = new LCourse(context);
@@ -89,7 +89,7 @@ namespace Alkemy_University.Controllers
         private async Task CreateRolesAsync(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityExtends>>();
             String[] rolesName = { "Admin", "Student" };
             foreach (var item in rolesName)
             {

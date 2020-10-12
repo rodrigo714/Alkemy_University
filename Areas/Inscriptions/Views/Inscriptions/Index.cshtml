@@ -28,9 +28,11 @@
 <div class="row">
     @foreach (var item in Model.List)
     {
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-2 col-md-6">
             <div class="card">
-                <a asp-route-id="@item.CourseID" asp-action="Details">Details</a>
+                <a asp-route-id="@item.CourseID" asp-action="Details">
+                    <img src="~/img/logo_layout.png" height="100" />
+                </a>
                 <div class="card-body">
                     <table class="tableCourses">
                         <tbody>
@@ -68,7 +70,7 @@
                 </div>
             </div>
         </div>
-
+        <br />
     }
 </div>
 <div align="center">
