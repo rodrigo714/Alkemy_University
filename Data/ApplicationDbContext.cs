@@ -16,8 +16,5 @@ namespace Alkemy_University.Data
         public DbSet<TCareer> _TCareer { get; set; }
         public DbSet<TCourse> _TCourse { get; set; }
         public DbSet<Inscription> _TInscription { get; set; }
-        public DbSet<AspNetUsers> _TaspNetUsers { get; set; }
-        public DbSet<AspNetRoles> _TaspNetRoles { get; set; }
-        public DbSet<AspNetUserRoles> _TaspNetUserRoles { get; set; }
     }
 }

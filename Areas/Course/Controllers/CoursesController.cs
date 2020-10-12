@@ -16,7 +16,6 @@ namespace Alkemy_University.Areas.Course.Controllers
     {
         private LCourse _lcourse;
         private LCareer _lcareer;
-        private LProfessor _lprofessor;
         private SignInManager<IdentityExtends> _signInManager;
         private static DataPager<TCourse> models;
         private static IdentityError IdentityError;
@@ -53,7 +52,7 @@ namespace Alkemy_University.Areas.Course.Controllers
                     Page_info = (string)objects[0],
                     Page_nav = (string)objects[1],
                     Careers = _lcareer.GetListCareer(),
-                    Professors = _lprofessor.GetListProfessor(),
+                    Professors = _lcourse.GetListProfessor(),
                     Input = new TCourse()
                 };
                 return View(models);
