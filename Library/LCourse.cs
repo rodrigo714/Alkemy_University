@@ -2,12 +2,10 @@
 using Alkemy_University.Areas.Inscriptions.Models;
 using Alkemy_University.Data;
 using Alkemy_University.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Alkemy_University.Library
 {
@@ -169,6 +167,50 @@ namespace Alkemy_University.Library
                     };
             }
             return identityError;
+        }
+
+        public List<DataCourse> Inscriptions(string userID, string search)
+        {
+            List<DataCourse> courses = new List<DataCourse>();
+
+            var inscriptions = _context._TInscription.Where(c => c.StudentID.Equals(userID)).ToList();
+            if (!inscriptions.Count.Equals(0))
+            {
+                if(search == null || search == "")
+                {
+                    inscriptions.ForEach(c => {
+                        var query = _context._TCareer.Join(_context._TCourse,
+                            d => d.CareerID,
+                            e => e.CareerID,
+                            (d,e) => new {
+                                d.CareerID,
+                                e.CourseID,
+                                e.Description,
+                                e.Hours,
+                                e.Status,
+                            }).Where(t => t.CourseID.Equals(c.CourseID)).ToList();
+
+                        if (!query.Count.Equals(0))
+                        {
+                            var data = query.Last();
+                            courses.Add(new DataCourse
+                            {
+
+                            });
+                        }
+                    });
+                }
+                else
+                {
+
+                }
+
+            }
+            else
+            {
+
+            }
+
         }
     }
 }
