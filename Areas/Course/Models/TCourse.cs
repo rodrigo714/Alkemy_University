@@ -1,12 +1,12 @@
-﻿using Alkemy_University.Areas.Career.Models;
-using Alkemy_University.Areas.Inscriptions.Models;
+﻿using Expedientes_Goya.Areas.Career.Models;
+using Expedientes_Goya.Areas.Inscriptions.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
-namespace Alkemy_University.Areas.Course.Models
+namespace Expedientes_Goya.Areas.Course.Models
 {
     public class TCourse
     {

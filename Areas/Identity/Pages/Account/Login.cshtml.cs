@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Alkemy_University.Models;
+using Expedientes_Goya.Models;
 
-namespace Alkemy_University.Areas.Identity.Pages.Account
+namespace Expedientes_Goya.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel

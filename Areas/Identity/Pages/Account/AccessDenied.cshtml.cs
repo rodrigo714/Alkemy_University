@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Alkemy_University.Areas.Identity.Pages.Account
+namespace Expedientes_Goya.Areas.Identity.Pages.Account
 {
     public class AccessDeniedModel : PageModel
     {

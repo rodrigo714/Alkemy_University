@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alkemy_University", "Alkemy_University.csproj", "{D7CCFFC2-657C-4C7B-992B-E10A97EAFAB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expedientes_Goya", "Expedientes_Goya.csproj", "{D7CCFFC2-657C-4C7B-992B-E10A97EAFAB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

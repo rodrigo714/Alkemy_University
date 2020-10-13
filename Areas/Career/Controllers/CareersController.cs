@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using Alkemy_University.Areas.Career.Models;
-using Alkemy_University.Controllers;
-using Alkemy_University.Data;
-using Alkemy_University.Library;
-using Alkemy_University.Models;
+using Expedientes_Goya.Areas.Career.Models;
+using Expedientes_Goya.Controllers;
+using Expedientes_Goya.Data;
+using Expedientes_Goya.Library;
+using Expedientes_Goya.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Alkemy_University.Areas.Career.Controllers
+namespace Expedientes_Goya.Areas.Career.Controllers
 {
     [Area("Career")]
     [Authorize(Roles = "Admin")]

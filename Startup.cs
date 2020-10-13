@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Alkemy_University.Data;
+using Expedientes_Goya.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Alkemy_University.Models;
+using Expedientes_Goya.Models;
 
-namespace Alkemy_University
+namespace Expedientes_Goya
 {
     public class Startup
     {
@@ -65,9 +65,9 @@ namespace Alkemy_University
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
-                    name: "Principal",
-                    areaName: "Principal",
-                    pattern: "{controller=Principal}/{action=Index}/{id?}");
+                    name: "Organizaciones",
+                    areaName: "Organizaciones",
+                    pattern: "{controller=Organizaciones}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
                     name: "Career",
                     areaName: "Career",
@@ -81,9 +81,9 @@ namespace Alkemy_University
                     areaName: "Inscriptions",
                     pattern: "{controller=Inscriptions}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
-                    name: "Professor",
-                    areaName: "Professor",
-                    pattern: "{controller=Professors}/{action=Index}/{id?}");
+                    name: "Expedientes",
+                    areaName: "Expedientes",
+                    pattern: "{controller=Expedientes}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

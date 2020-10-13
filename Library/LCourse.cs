@@ -1,14 +1,14 @@
-﻿using Alkemy_University.Areas.Course.Models;
-using Alkemy_University.Areas.Inscriptions.Models;
-using Alkemy_University.Data;
-using Alkemy_University.Models;
+﻿using Expedientes_Goya.Areas.Course.Models;
+using Expedientes_Goya.Areas.Inscriptions.Models;
+using Expedientes_Goya.Data;
+using Expedientes_Goya.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Alkemy_University.Library
+namespace Expedientes_Goya.Library
 {
     public class LCourse
     {

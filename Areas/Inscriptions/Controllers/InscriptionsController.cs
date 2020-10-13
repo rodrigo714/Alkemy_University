@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Alkemy_University.Data;
-using Alkemy_University.Library;
-using Alkemy_University.Models;
+using Expedientes_Goya.Data;
+using Expedientes_Goya.Library;
+using Expedientes_Goya.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Alkemy_University.Areas.Inscriptions.Controllers
+namespace Expedientes_Goya.Areas.Inscriptions.Controllers
 {
     [Area("Inscriptions")]
     //[Authorize(Roles = "Student, Admin")]

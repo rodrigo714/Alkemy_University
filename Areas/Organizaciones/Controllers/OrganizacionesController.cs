@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Alkemy_University.Areas.Principal.Controllers
+namespace Expedientes_Goya.Areas.Principal.Controllers
 {
-    [Area("Principal")]
-    public class PrincipalController : Controller
+    [Area("Organizaciones")]
+    public class OrganizacionesController : Controller
     {
         public IActionResult Index()
         {

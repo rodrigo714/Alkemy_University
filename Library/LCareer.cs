@@ -1,12 +1,12 @@
-﻿using Alkemy_University.Areas.Career.Models;
-using Alkemy_University.Data;
+﻿using Expedientes_Goya.Areas.Career.Models;
+using Expedientes_Goya.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Alkemy_University.Library
+namespace Expedientes_Goya.Library
 {
     public class LCareer
     {

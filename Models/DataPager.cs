@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
-namespace Alkemy_University.Models
+namespace Expedientes_Goya.Models
 {
     public class DataPager<T>
     {

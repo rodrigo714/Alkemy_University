@@ -5,14 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Alkemy_University.Models;
+using Expedientes_Goya.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-using Alkemy_University.Library;
-using Alkemy_University.Areas.Course.Models;
-using Alkemy_University.Data;
+using Expedientes_Goya.Library;
+using Expedientes_Goya.Areas.Course.Models;
+using Expedientes_Goya.Data;
 
-namespace Alkemy_University.Controllers
+namespace Expedientes_Goya.Controllers
 {
     public class HomeController : Controller
     {

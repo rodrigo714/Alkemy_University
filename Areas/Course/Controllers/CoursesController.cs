@@ -1,14 +1,14 @@
-﻿using Alkemy_University.Areas.Course.Models;
-using Alkemy_University.Data;
-using Alkemy_University.Library;
-using Alkemy_University.Models;
+﻿using Expedientes_Goya.Areas.Course.Models;
+using Expedientes_Goya.Data;
+using Expedientes_Goya.Library;
+using Expedientes_Goya.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Alkemy_University.Areas.Course.Controllers
+namespace Expedientes_Goya.Areas.Course.Controllers
 {
     [Area("Course")]
     [Authorize(Roles = "Admin")]

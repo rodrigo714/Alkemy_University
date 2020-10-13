@@ -1,8 +1,8 @@
-﻿using Alkemy_University.Areas.Course.Models;
+﻿using Expedientes_Goya.Areas.Course.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Alkemy_University.Areas.Career.Models
+namespace Expedientes_Goya.Areas.Career.Models
 {
     public class TCareer
     {

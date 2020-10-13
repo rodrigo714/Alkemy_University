@@ -1,6 +1,6 @@
 using System;
 
-namespace Alkemy_University.Models
+namespace Expedientes_Goya.Models
 {
     public class ErrorViewModel
     {

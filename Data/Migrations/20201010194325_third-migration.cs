@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Alkemy_University.Data.Migrations
+namespace Expedientes_Goya.Data.Migrations
 {
     public partial class thirdmigration : Migration
     {

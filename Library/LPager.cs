@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Alkemy_University.Library
+namespace Expedientes_Goya.Library
 {
     public class LPager<T>
     {

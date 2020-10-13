@@ -1,5 +1,5 @@
 ﻿using System;
-using Alkemy_University.Data;
+using Expedientes_Goya.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: HostingStartup(typeof(Alkemy_University.Areas.Identity.IdentityHostingStartup))]
-namespace Alkemy_University.Areas.Identity
+[assembly: HostingStartup(typeof(Expedientes_Goya.Areas.Identity.IdentityHostingStartup))]
+namespace Expedientes_Goya.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
